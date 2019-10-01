@@ -5,7 +5,7 @@
 // big boy - powers most of our app, rest of app will write itself
 
 import React from 'react';
-import jwt from 'jasonwebtoken';
+import jwt from 'jsonwebtoken';
 import cookie from 'react-cookies';
 
 // context API - tool for state management - it's just an object tied to a component - component with state, using state to create React context from it
@@ -26,11 +26,12 @@ class LoginProvider extends React.Component {
       login: this.login,
       logout: this.logout,
       // shows what data is being passed around by token on the back end
-    }
+    };
+  }
 
     // login - method on login provider class - sends a request (like Postman) to our back end - can be used for both sign up and sign in
     login = (username, password, type) => {
-      let options = {
+      const options = {
         method: 'POST',
         mode: 'cors',
         cache: 'no-cache',
@@ -47,13 +48,15 @@ class LoginProvider extends React.Component {
       }
       // fetch is awesome for making requests - more modern way to make http request from the browser
       fetch(`${API}/${type}`, options)
-        .then(response => response.text())
-        .then(token => this.validateToken())
+        .then((response) => response.text())
+        .then((token) => this.validateToken(token))
         // validating tokens on our class vs user like on back end
         .catch(console.error);
     }
     // logout - set default state - logged in false, token null and user 
-
+    logout = () => {
+      this.setLoginState(false, null, {});
+    };
 
     // validate token with jwt
     validateToken = (token) => {
@@ -69,24 +72,26 @@ class LoginProvider extends React.Component {
 
     // state handling - e.g. properly set variable - similar to validating things in auth - set header and set the state
     setLoginState = (loggedIn, user, token) => {
-    
+      cookie.save('auth', token);
+      this.setState({ token, loggedIn, user });
     }
 
-    this.componentDidMount() {
+    componentDidMount() {
       // when component is born, validate tokens. set cookies if able to
+      const cookieToken = cookie.load('auth');
+      this.validateToken(cookieToken);
     }
 
     // whole point is to render
     render() {
       return(
           // this is the wrapper so when we wrap things in this it allows us to inject things into the children
-        <LoginContext.Provider value="???">
+        <LoginContext.Provider value={this.state}>
           {this.props.children}
         </LoginContext.Provider>
         // this.props.children - eslint disable for things with props validation
-      )
+      );
     }
   }
-}
 
 export default LoginProvider;

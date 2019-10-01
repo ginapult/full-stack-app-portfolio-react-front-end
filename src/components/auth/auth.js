@@ -5,7 +5,7 @@ import React from 'react';
 import { LoginContext } from './context.js';
 
 const If = props => {
-
+  return !!props.condition ? props.children : null;
 };
 
 class Auth extends React.Component {
@@ -16,17 +16,21 @@ class Auth extends React.Component {
     let okToRender = false;
     try {
       // returns JSX based on boolean value that comes in
-      okToRender = this.context.loggedIn
-      && (this.props.capability
-        ? this.context.user.capabilities.includes(this.props.capability)
-        : false);
+      if (this.props.capability) {
+        if (this.context.user.capabilities.includes(this.props.capability)) {
+          okToRender = true;
+        }
+      }
     } catch(error) {
       console.warn('Not Authorized')
     }
 
-    return {
+    return (
       <If condition={okToRender}>
+        <div>{this.props.children}</div>
       </If>
-    }
+    )
   }
 }
+
+export default Auth;
