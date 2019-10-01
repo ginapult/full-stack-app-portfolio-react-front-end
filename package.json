@@ -6,6 +6,7 @@
   "main": "src/index.js",
   "dependencies": {
     "jsonwebtoken": "8.5.1",
+    "node-sass": "4.12.0",
     "prop-types": "15.7.2",
     "react": "16.8.6",
     "react-cookies": "0.1.1",
@@ -13,11 +14,15 @@
     "react-scripts": "3.0.1"
   },
   "devDependencies": {
+    "eslint-config-airbnb-base": "14.0.0",
+    "eslint-plugin-jest": "22.17.0",
+    "eslint-plugin-react": "7.15.1",
     "typescript": "3.3.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "lint": "eslint src/**/*.js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
