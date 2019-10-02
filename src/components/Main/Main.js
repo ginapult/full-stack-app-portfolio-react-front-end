@@ -1,10 +1,10 @@
 import React from 'react';
-import App from '../../app.js';
+import App from '../../app';
 
 const Main = () => {
   return (
     <main>
-      <h2>Let's make some magic happen!</h2>
+      <h2>Let us make some magic happen!</h2>
       <App />
     </main>
   );

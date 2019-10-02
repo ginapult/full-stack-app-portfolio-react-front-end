@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Auth from './components/auth/auth.js';
-import Login from './components/auth/login.js';
-import LoginProvider from './components/auth/context.js';
+import Auth from './components/auth/auth';
+import Login from './components/auth/login';
+import LoginProvider from './components/auth/context';
 
-const Read = props => {
+const Read = (props) => {
   return (
     <Auth capability='read'>
       <span>Read</span>
@@ -12,16 +12,16 @@ const Read = props => {
   );
 };
 
-const Update = props => {
+const Update = (props) => {
   return (
     <Auth capability='update'>
       <span>Update</span>
     </Auth>
   );
-}
+};
 
 class App extends React.Component {
-  render () {
+  render() {
     return (
       <LoginProvider>
         <Login />

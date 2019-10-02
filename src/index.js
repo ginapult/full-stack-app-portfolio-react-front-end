@@ -1,11 +1,11 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import Header from '../src/components/Header/Header.js';
-import Main from '../src/components/Main/Main.js';
-import Footer from '../src/components/Footer/Footer.js';
+import Header from './components/Header/Header';
+import Main from './components/Main/Main';
+import Footer from './components/Footer/Footer';
 
-import "./styles.css";
+import './styles.css';
 
 function App() {
   return (
@@ -17,5 +17,5 @@ function App() {
   );
 }
 
-const rootElement = document.getElementById("root");
+const rootElement = document.getElementById('root');
 ReactDOM.render(<App />, rootElement);

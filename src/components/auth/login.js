@@ -1,9 +1,9 @@
 // auth form
 import React from 'react';
-import { LoginContext } from './context.js';
+import { LoginContext } from './context';
 
-const If = props => {
-  return !!props.condition ? props.children : null;
+const If = (props) => {
+  return props.condition ? props.children : null;
 };
 
 class Login extends React.Component {
@@ -13,9 +13,10 @@ class Login extends React.Component {
     super(props);
     this.state = {
       username: '',
-      password: ''
+      password: '',
     };
   }
+
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
